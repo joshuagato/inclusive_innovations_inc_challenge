@@ -11,15 +11,15 @@ class Plans extends Component {
 
   // This is just a demonstration of making an API request to a backend
   choosePlan = planId => {
-    
+
     let token = 'asc812ebja2ejdkohjas91234lvas04r2hjasl023rkafafahnacs'
-    const payload = { token: token, plan: planId };
+    const payload = { title: planId, body: planId + token, userId: planId };
 
       // fetch('ajaxhandlers/payment-plan-handler.php', {
-      fetch('https://jsonplaceholder.typicode.com/plans', {
+      fetch('https://jsonplaceholder.typicode.com/posts', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': token,
           'Accept': 'application/json'
         },
@@ -28,7 +28,7 @@ class Plans extends Component {
       .then(response => response.json())
       .then(data => {
 
-        if (data.message !== 'Failed.') {
+        if (data.message === 'Failed.') {
           alert('An error occurred. Please try again later.');
           return;
         }
